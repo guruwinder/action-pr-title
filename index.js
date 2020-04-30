@@ -14,11 +14,14 @@ function validateTitlePrefix(title, prefix, caseSensitive) {
 async function run() {
     try {
         const eventName = github.context.eventName;
+
+        core.setFailed(JSON.stringify(github.context.payload.pull_request))
         core.info(`Event name: ${eventName}`);
         if (validEvent.indexOf(eventName) < 0) {
             core.setFailed(`Invalid event: ${eventName}`);
             return;
         }
+
 
         const title = github.context.payload.pull_request.title;
         core.info(`Pull Request title: "${title}"`);
