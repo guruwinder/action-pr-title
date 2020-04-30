@@ -16,8 +16,7 @@ async function run() {
         const base = github.context.payload.pull_request.base.ref
         if(base === 'master') return
         const eventName = github.context.eventName;
-
-        core.setFailed(JSON.stringify(github.context.payload.pull_request))
+        
         core.info(`Event name: ${eventName}`);
         if (validEvent.indexOf(eventName) < 0) {
             core.setFailed(`Invalid event: ${eventName}`);
